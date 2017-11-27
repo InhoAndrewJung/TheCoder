@@ -1,0 +1,15 @@
+@charset "EUC-KR";
+@media all and (min-width: 1024px){
+.container {
+	max-width: 1000px;
+	margin: 0px auto;
+}
+.crow {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+}
