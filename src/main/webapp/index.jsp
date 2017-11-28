@@ -19,7 +19,7 @@
         position: relative;
 
         width : 100%;
-        height : 400px;
+        height : 450px;
     }
 </style>
 
@@ -39,7 +39,7 @@
 <br>
 <!-- Question area start -->
 <div class="alert alert-secondary" role="alert">
-  <h4><strong>문제 : A+B</strong></h4>
+  <h4><strong>문제1 : A+B</strong></h4>
   <p>두 수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.</p>
   <h5><strong>입력</strong></h5>
   <p>첫째 줄에 A와 B가 주어진다.</p>
@@ -52,7 +52,10 @@
 
     <label for="write-code" class="text-muted">코드 작성</label>
      <div class="form-group">
-    <div id="codebox" name="code" >
+    <div id="codebox" name="code" >    import java.util.*;
+	import java.io.*;
+	
+	
     public class code {
 
 	public static void main(String[] args) {
@@ -76,15 +79,15 @@
   
 
 <div class="p-1 mb-1 bg-warning text-white">클래스 이름 code는 변경할 수 없습니다.</div>
-<div class="p-1 mb-1 bg-success text-white">System.in은 추후 문제용으로 제공예정입니다.</div>
-<div class="p-1 mb-1 bg-danger text-white">서버에 영향을 줄 수 있는 코드는 입력을 금지합니다.</div>
+<!-- <div class="p-1 mb-1 bg-success text-white">System.in은 추후 문제용으로 제공예정입니다.</div> -->
+<!-- <div class="p-1 mb-1 bg-danger text-white">서버에 영향을 줄 수 있는 코드는 입력을 금지합니다.</div> -->
 <input type="hidden" id="context" name="code"></input>
 <span class="d-flex justify-content-end"><input type="submit" class="btn btn-primary" value="제출" onClick='getValue()'/></span>
 </form>
 <!-- code write area end -->
 </div>
 <!-- Custom row end -->
-
+<div style="height:100px"></div>
 
 
 

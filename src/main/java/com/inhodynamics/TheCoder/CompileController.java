@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.inhodynamics.compile.Compute;
 import com.inhodynamics.model.Data;
-import com.inhodynamics.model.TestCase;
+import com.inhodynamics.model.Preprocess;
 
 @Controller
 public class CompileController {
@@ -25,15 +25,20 @@ public class CompileController {
 	@RequestMapping("result")
 	public ModelAndView compile(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String code = request.getParameter("code");
-		String[] compiledCode = new String[2];
+		String[] compiledResult = new String[4];
+		int questionNo = 1; //Get questionNo from DB
+		int tcNo = 0; //TestCase number
 		//Handling System.in & Compare user soureCode and Answer
-		//TestCase proc = new TestCase();
-		//code = proc.process(code);
+		Preprocess proc = new Preprocess();
+		for(tcNo=0; tcNo<2; tcNo++) {
+		code = proc.process(code, questionNo, tcNo);
+		System.out.println("After process:"+code);
 		//Compile using javac
 		Compute com = new Compute();
-		compiledCode = com.compile(code);
+		compiledResult = com.compile(code, questionNo, tcNo);
 		//put error message and result to setVO
-		Data set = new Data(compiledCode[0], compiledCode[1]);
+		}
+		Data set = new Data(compiledResult[0], compiledResult[1], compiledResult[2]);
 		return new ModelAndView("result","code", set);	
 	}
 	
