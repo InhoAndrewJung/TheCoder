@@ -54,18 +54,19 @@ public class Compute {
 	}
 	
 	while(scanResult.hasNext()) {
-		result += scanResult.nextLine();
+		result += scanResult.nextLine()+"\r\n";
 		System.out.println("scanResult : " + result);
 	} 
 	
 	while(expAnswer.hasNext()) {
-		answer = expAnswer.nextLine();
+		answer += expAnswer.nextLine()+"\r\n";
 	}
 	if(error.contains("error")) {
 		result="";
 	}
-	
-	
+	//answer.length();
+	//answer = answer.substring(0, answer.length()-2);
+	System.out.println("expAnswer : "+answer);
 	data[0] = error;
 	System.out.println("data[1]: "+ result);
 	data[1] = result;

@@ -26,7 +26,7 @@ public class CompileController {
 	public ModelAndView compile(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String code = request.getParameter("code");
 		String[] compiledResult = new String[4];
-		int questionNo = 1; //Get questionNo from DB
+		int questionNo = 4; //Get questionNo from DB
 		int tcNo = 0; //TestCase number
 		//Handling System.in & Compare user soureCode and Answer
 		Preprocess proc = new Preprocess();
