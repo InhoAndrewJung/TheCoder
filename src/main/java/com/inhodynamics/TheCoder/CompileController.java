@@ -38,6 +38,13 @@ public class CompileController {
 		compiledResult = com.compile(code, questionNo, tcNo);
 		//put error message and result to setVO
 		}
+		//0 : answerResult, 1 : error, 2 : result 
+		System.out.println("에러메세지@controller : "+ compiledResult[0]);
+		if(compiledResult[0].contains("Exception")) {
+			System.out.println("런타임에러 확인 :"+compiledResult[0]);
+			compiledResult[0] = "Exception";
+		}
+		System.out.println("런타임에러 확인 :"+compiledResult[1]);
 		Data set = new Data(compiledResult[0], compiledResult[1], compiledResult[2]);
 		return new ModelAndView("result","code", set);	
 	}

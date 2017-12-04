@@ -25,69 +25,13 @@ public class Compute {
 		String qNo = questionNo+"";
 		String answer = "";
 		String[] data = new String[4];
+		//String[] saveTC = new String[5];
 		String tc0="";
 	
 	
 	
-	System.out.println("soruce In");
-	
-	//File file = new File("C:\\Users\\inhoj\\Desktop\\eclipse\\workspace\\The Coder\\code.java");
-	//File userCode = new File("C:\\Users\\inhoj\\Desktop\\eclipse\\workspace\\The Coder\\userCode.txt");
-	File file = new File("C:\\The Coder\\code.java");
-	File userCode = new File("C:\\The Coder\\userCode.txt");
-	
-	
-	System.out.println("created file");
-	FileWriter uc = new FileWriter(userCode);
-	uc.write(sourceCode);
-	uc.close();
-	FileWriter fw = new FileWriter(file);
-	fw.write(sourceCode);
-	fw.close();
-	System.out.println("file writed");
-	
-	//String batchFile = "C:\\Users\\inhoj\\Desktop\\eclipse\\workspace\\The Coder\\run.bat";
-	String batchFile = "C:\\The Coder\\run.bat";
-	/*String[] commands = {"cmd.exe", "/c", "C:\\Users\\inhoj\\Desktop\\eclipse\\workspace\\The Coder\\run.bat"};
-	Process proc = Runtime.getRuntime().exec(commands);*/
-	
-	/*Display display = new Display();
-	Program.launch(batchFile);
-	display.dispose();*/
-	
-	//File bfile = new File("C:\\Users\\inhoj\\Desktop\\eclipse\\workspace\\The Coder\\run.bat");
-	File bfile = new File("C:\\The Coder\\run.bat");
-    
-	
-	Desktop desk = Desktop.getDesktop();
-	long start = System.currentTimeMillis(); //시작시각
-	synchronized (desk) {
-		desk.open(bfile);		
-		Thread.sleep(1500);
-	}
-	//Add kill CMD process code after 2s
-	Runtime rt = Runtime.getRuntime();
-	rt.exec("taskkill " +"/IM CMD.EXE");
-/*	
-	long end = System.currentTimeMillis(); //끝나는 시각
-	
-	long gap = (int)((end-start)/1000);
-	
-	System.out.println(gap+"초");
-	if(gap>3) System.exit(0);*/
-	 //Desktop.getDesktop().open(bfile);
-	 //Desktop.getDesktop().wait(2000);
-	/*Runtime rt = Runtime.getRuntime();
-	String batFile = "C:\\Users\\inhoj\\Desktop\\eclipse\\workspace\\The Coder\\run.bat";
-	Process proc;
-	
-	try {
-		proc = rt.exec(batFile);
-		proc.waitFor();
-	} catch(Exception e) {
-		e.printStackTrace();
-	}*/
-	//Thread.sleep(1500);
+	createFile(sourceCode);	
+	runJavac();
 	
 	//File eFile = new File("C:\\Users\\inhoj\\Desktop\\eclipse\\workspace\\The Coder\\error.txt");
 	//File rFile = new File("C:\\Users\\inhoj\\Desktop\\eclipse\\workspace\\The Coder\\result.txt");
@@ -128,41 +72,35 @@ public class Compute {
 	
 	
 	
+	//save TC0~4 answer
+	/*for(int i = 0; i<5; i++) {
+		if(tcNo == i ) {
+			FileWriter t = new FileWriter(tmpFile);
+			if(result.equals(answer) ) {
+				saveTC[i] = "correct";
+				t.write("correct");
+				t.close();
+				System.out.println("TC0tmp result writed");
+				System.out.println("TC0:"+data[2]);
+			}else {
+				saveTC[i] = "wrong";
+				t.write("wrong");
+				t.close();
+				System.out.println("TC0tmp result writed");
+				System.out.println("TC0:"+data[2]);
+			}
+			}
+	}*///for ended
 	
 	//save TC0 and TC1 answer
-	if(tcNo ==0) {
-		FileWriter t = new FileWriter(tmpFile);
-		if(result.equals(answer) ) {
-			data[2] = "correct";
-			t.write("correct");
-			t.close();
-			System.out.println("TC0tmp result writed");
-			System.out.println("TC0:"+data[2]);
-		}else {
-			data[2] = "wrong";
-			t.write("wrong");
-			t.close();
-			System.out.println("TC0tmp result writed");
-			System.out.println("TC0:"+data[2]);
-		}
-		}
+	checkTestcase(tcNo, result, answer, data, tmpFile);
 	
 	
-	if(tcNo ==1) {
-	if(result.equals(answer) ) {
-		System.out.println("TC1 ANSWER:"+answer);
-		data[3] = "correct";
-		System.out.println("TC1:"+data[3]);
-	}else {
-		data[3] = "wrong";
-		System.out.println("TC1:"+data[3]);
-	}
-	}
 	scanError.close();
 	scanResult.close();
 	
-	eFile.delete();
-	rFile.delete();
+	//eFile.delete();
+	//rFile.delete();
 	
 	
 	
@@ -189,5 +127,100 @@ public class Compute {
 	System.out.println("채점결과" + data[2]);
 	
 	return data;
+	}
+
+	private void runJavac() throws IOException, InterruptedException {
+		//String batchFile = "C:\\Users\\inhoj\\Desktop\\eclipse\\workspace\\The Coder\\run.bat";
+		String batchFile = "C:\\The Coder\\run.bat";
+		/*String[] commands = {"cmd.exe", "/c", "C:\\Users\\inhoj\\Desktop\\eclipse\\workspace\\The Coder\\run.bat"};
+		Process proc = Runtime.getRuntime().exec(commands);*/
+		
+		/*Display display = new Display();
+		Program.launch(batchFile);
+		display.dispose();*/
+		
+		//File bfile = new File("C:\\Users\\inhoj\\Desktop\\eclipse\\workspace\\The Coder\\run.bat");
+		File bfile = new File("C:\\The Coder\\run.bat");
+		
+		
+		Desktop desk = Desktop.getDesktop();
+		long start = System.currentTimeMillis(); //시작시각
+		synchronized (desk) {
+			desk.open(bfile);		
+			Thread.sleep(1500);
+		}
+		//Add kill CMD process code after 2s
+		Runtime rt = Runtime.getRuntime();
+		rt.exec("taskkill " +"/IM CMD.EXE");
+/*	
+		long end = System.currentTimeMillis(); //끝나는 시각
+		
+		long gap = (int)((end-start)/1000);
+		
+		System.out.println(gap+"초");
+		if(gap>3) System.exit(0);*/
+		 //Desktop.getDesktop().open(bfile);
+		 //Desktop.getDesktop().wait(2000);
+		/*Runtime rt = Runtime.getRuntime();
+		String batFile = "C:\\Users\\inhoj\\Desktop\\eclipse\\workspace\\The Coder\\run.bat";
+		Process proc;
+		
+		try {
+			proc = rt.exec(batFile);
+			proc.waitFor();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}*/
+		//Thread.sleep(1500);
+	}
+
+	private void createFile(String sourceCode) throws IOException {
+		System.out.println("soruce In");
+		
+		//File file = new File("C:\\Users\\inhoj\\Desktop\\eclipse\\workspace\\The Coder\\code.java");
+		//File userCode = new File("C:\\Users\\inhoj\\Desktop\\eclipse\\workspace\\The Coder\\userCode.txt");
+		File file = new File("C:\\The Coder\\code.java");
+		File userCode = new File("C:\\The Coder\\userCode.txt");
+		
+		
+		System.out.println("created file");
+		FileWriter uc = new FileWriter(userCode);
+		uc.write(sourceCode);
+		uc.close();
+		FileWriter fw = new FileWriter(file);
+		fw.write(sourceCode);
+		fw.close();
+		System.out.println("file writed");
+	}
+
+	private void checkTestcase(int tcNo, String result, String answer, String[] data, File tmpFile) throws IOException {
+		if(tcNo ==0) {
+			FileWriter t = new FileWriter(tmpFile);
+			if(result.equals(answer) ) {
+				data[2] = "correct";
+				t.write("correct");
+				t.close();
+				System.out.println("TC0tmp result writed");
+				System.out.println("TC0:"+data[2]);
+			}else {
+				data[2] = "wrong";
+				t.write("wrong");
+				t.close();
+				System.out.println("TC0tmp result writed");
+				System.out.println("TC0:"+data[2]);
+			}
+			}
+		
+		
+		if(tcNo ==1) {
+		if(result.equals(answer) ) {
+			System.out.println("TC1 ANSWER:"+answer);
+			data[3] = "correct";
+			System.out.println("TC1:"+data[3]);
+		}else {
+			data[3] = "wrong";
+			System.out.println("TC1:"+data[3]);
+		}
+		}
 	}
 }

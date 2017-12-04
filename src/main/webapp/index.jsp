@@ -13,7 +13,7 @@
 <link rel="stylesheet" media="screen and (max-width:1024px)" href="resources/css/desktop.css">
 <link rel="stylesheet" media="screen and (max-width:768px)" href="resources/css/tablet.css">
 <link rel="stylesheet" media="screen and (max-width:320px)" href="resources/css/mobile.css">
-<script src="/resources/js/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="resources/js/ace.js" type="text/javascript" charset="utf-8"></script>
 <style type="text/css" media="screen">
     #codebox { 
         position: relative;
@@ -52,7 +52,7 @@
 
     <label for="write-code" class="text-muted">코드 작성</label>
      <div class="form-group">
-    <div id="codebox" name="code" >    import java.util.*;
+    <div id="codebox" name="code" >   import java.util.*;
 	import java.io.*;
 	
 	

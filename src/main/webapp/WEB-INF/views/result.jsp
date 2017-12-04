@@ -36,23 +36,32 @@ a{
   <strong>맞췄습니다! :)</strong> 
 </div>
 </c:if>
-<c:if test="${code.answerResult eq 'wrong'}">
+
+<c:if test="${code.answerResult eq 'wrong' and code.error != 'Exception'}">
 <div class="alert alert-danger" role="alert">
   <strong>틀렸습니다! 다시 도전해 보세요.</strong>
+</div>
+</c:if>
+
+<c:if test="${code.error eq 'Exception'}">
+<div class="alert alert-warning" role="alert">
+  <strong>런타임 에러입니다! 다시 도전해 보세요.</strong>
+  </div>
 </c:if>
 </div>
 <div class="form-group">
+<%--
     <label for="write-code" class="text-muted">오류</label>
     
-    <textarea class="form-control" id="codebox" name="code" rows="10" cols="200">
+     <textarea class="form-control" id="codebox" name="code" rows="10" cols="200">
     ${code.error}
     </textarea>
     <br>
-    <%-- <label for="write-code" class="text-muted">결과</label>
+     <label for="write-code" class="text-muted">결과</label>
     
     <textarea class="form-control" id="codebox" name="code" rows="10" cols="200">
     ${code.result}
-    </textarea> --%>
+    </textarea>  --%>
   </div>
 
 
